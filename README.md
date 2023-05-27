@@ -1,4 +1,4 @@
-**Eatit**
+# Eatit
 
 
 # Technologies used 💻
@@ -11,7 +11,7 @@ Redux: a predictable state container for JavaScript apps.
 
 # Local installation 📲
 
-**Client**
+# Client
 
 - Create a new file called .env and add the necessary environment variables. You can copy the .env.example file and replace the values with your own.
 - Install dependencies using npm install.

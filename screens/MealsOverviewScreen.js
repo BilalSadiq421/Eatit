@@ -23,6 +23,7 @@ function MealsOverviewScreen({ route, navigation }) {
         onPress={() =>
           navigation.navigate("MealItemDetails", {
             mealItemId: itemData.item.id,
+            title: itemData.item.title,
           })
         }
       />

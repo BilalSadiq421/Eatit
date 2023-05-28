@@ -17,7 +17,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //Screens
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
-import MealItemDetails from "./components/MealItemDetails";
+import MealItemDetails from "./screens/MealItemDetails";
 
 //React-Navigation:
 //Register the screen on Stack.Navigator to which you want to navigate,
@@ -67,8 +67,9 @@ export default function App() {
             component={MealItemDetails}
             options={({ route, navigate }) => {
               const itemId = route.params.mealItemId;
+              const title = route.params.title;
               console.log(itemId);
-              return { itemId: itemId };
+              return { itemId: itemId, title: title };
             }}
           />
         </Stack.Navigator>

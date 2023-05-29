@@ -1,6 +1,8 @@
 import React from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
+import MealStructure from "../components/MealStructure";
+import MapList from "../components/MapList";
 
 function MealItemDetails({ route, navigation }) {
   const mealId = route.params.mealItemId;
@@ -11,27 +13,15 @@ function MealItemDetails({ route, navigation }) {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <Image style={styles.image} source={{ uri: meal.imageUrl }} />
         <Text style={styles.title}>{meal.title}</Text>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.detail}>{meal.duration}m</Text>
-          <Text style={styles.detail}>{meal.complexity.toUpperCase()}</Text>
-          <Text style={styles.detail}>{meal.affordability.toUpperCase()}</Text>
-        </View>
+        <MealStructure
+          duration={meal.duration}
+          complexity={meal.complexity}
+          affordability={meal.affordability}
+        />
         <Text style={styles.subTitle}>Ingredients</Text>
-        <View style={styles.listContainer}>
-          {meal.ingredients.map((value) => (
-            <View key={value} style={styles.listItemContainer}>
-              <Text style={styles.listItem}>{value}</Text>
-            </View>
-          ))}
-        </View>
+        <MapList arrayValue={meal.ingredients} />
         <Text style={styles.subTitle}>Steps</Text>
-        <View style={styles.listContainer}>
-          {meal.steps.map((value) => (
-            <View key={value} style={styles.listItemContainer}>
-              <Text style={styles.listItem}>{value}</Text>
-            </View>
-          ))}
-        </View>
+        <MapList arrayValue={meal.steps} />
       </ScrollView>
     </View>
   );
@@ -70,33 +60,6 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
     marginBottom: 6,
     width: "80%",
-  },
-  detailsContainer: {
-    padding: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  detail: {
-    fontSize: 14,
-    marginHorizontal: 6,
-  },
-  listContainer: {
-    width: "80%",
-  },
-  listItem: {
-    backgroundColor: "#f5a442",
-    marginVertical: 4,
-    paddingVertical: 4,
-    paddingHorizontal: 6,
-    textAlign: "center",
-    color: "white",
-    fontSize: 14,
-    borderRadius: 8,
-  },
-  listItemContainer: {
-    borderRadius: 8,
-    overflow: "hidden",
   },
 });
 

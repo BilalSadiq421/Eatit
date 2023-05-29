@@ -2,7 +2,7 @@
 import React from "react";
 //Image from Unsplash.com
 //SafeAreaView for sliding the content bellow smartphone Notches
-import { StyleSheet, StatusBar } from "react-native";
+import { Text, StyleSheet, StatusBar } from "react-native";
 
 // React Navigation:
 // npm install @react-navigation/native
@@ -18,6 +18,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealItemDetails from "./screens/MealItemDetails";
+import { ScreenStackHeaderRightView } from "react-native-screens";
 
 //React-Navigation:
 //Register the screen on Stack.Navigator to which you want to navigate,
@@ -65,12 +66,13 @@ export default function App() {
           <Stack.Screen
             name="MealItemDetails"
             component={MealItemDetails}
-            options={({ route, navigate }) => {
-              const itemId = route.params.mealItemId;
-              const title = route.params.title;
-              console.log(itemId);
-              return { itemId: itemId, title: title };
-            }}
+            options={({ route, navigate }) => ({
+              itemId: route.params.mealItemId,
+              title: route.params.title,
+              //First way of adding component to header,
+              //like : Button
+              headerRight: () => <Text>Button!</Text>,
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

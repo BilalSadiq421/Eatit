@@ -1,4 +1,4 @@
-import React from "react";
+import { useLayoutEffect } from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealStructure from "../components/MealStructure";
@@ -7,6 +7,13 @@ import MapList from "../components/MapList";
 function MealItemDetails({ route, navigation }) {
   const mealId = route.params.mealItemId;
   const meal = MEALS.find((item) => item.id === mealId);
+
+  //Second way of adding component to header
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => <Text>Me</Text>,
+  //   });
+  // }, [navigation]);
 
   return (
     <View style={styles.rootContainer}>
@@ -53,10 +60,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     fontWeight: "bold",
-    color: "black",
+    color: "#444",
     marginVertical: 6,
     borderBottomWidth: 1.5,
-    borderColor: "black",
+    borderColor: "#f5a442",
     paddingBottom: 8,
     marginBottom: 6,
     width: "80%",

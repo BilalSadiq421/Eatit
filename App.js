@@ -4,15 +4,8 @@ import React from "react";
 //SafeAreaView for sliding the content bellow smartphone Notches
 import { StyleSheet, StatusBar } from "react-native";
 
-// React Navigation:
-// npm install @react-navigation/native
-// for Expo Managed Projects : npx expo install react-native-screens react-native-safe-area-context
-import { NavigationContainer } from "@react-navigation/native";
-//Wrap your app component with NavigationContainer,
-
-//Stack:
-//npm install @react-navigation/native-stack
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+//Expo-Commands:
+//Clean build cache:npm cache clean –force
 
 //Screens
 import CategoriesScreen from "./screens/CategoriesScreen";
@@ -20,7 +13,16 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealItemDetails from "./screens/MealItemDetails";
 import IconButton from "./components/Buttons/IconButton";
 
-//React-Navigation:
+// React Navigation:
+// npm install @react-navigation/native
+// for Expo Managed Projects : npx expo install react-native-screens react-native-safe-area-context
+import { NavigationContainer } from "@react-navigation/native";
+//Wrap your app component with NavigationContainer,
+
+//NAVIGATION
+
+//Stack-Navigator:-
+//Wrap in <NavigationContainer>
 //Register the screen on Stack.Navigator to which you want to navigate,
 //that component will automatically get a navigate prop by react,
 //apply onPress to navigation.navigate(<component screen registered name>)
@@ -28,7 +30,28 @@ import IconButton from "./components/Buttons/IconButton";
 //import useNavigation from '@react-navigation/native'
 //const navigation = useNavigation();
 
+//Stack:
+//npm install @react-navigation/native-stack
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
+
+//Drawer Navigation
+
+//Drawer:
+//npm install @react-navigation/drawer
+// import { createDrawerNavigator } from "@react-navigation/drawer";
+// const Drawer = createDrawerNavigator();
+//for expo:npx expo install react-native-gesture-handler react-native-reanimated,
+//for native:npm install react-native-gesture-handler react-native-reanimated
+//navigators can be added with other navigators, like drawer with stack
+
+// function DrawerNavigator() {
+//   return (
+//     <Drawer.Navigator>
+//       <Drawer.Screen name="Categories" compponent={CategoriesScreen} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 export default function App() {
   return (
@@ -46,10 +69,10 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="MealsCategories"
+            name="Drawer"
             component={CategoriesScreen}
             //set styles fo react navigation specific screen
-            options={{ title: "All Categories" }}
+            // options={{ title: "All Categories" }}
           />
           <Stack.Screen
             name="MealsOverviewScreen"

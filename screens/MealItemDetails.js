@@ -1,19 +1,42 @@
-import { useLayoutEffect } from "react";
+import { useContext, useLayoutEffect } from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
+
 import MealStructure from "../components/MealStructure";
 import MapList from "../components/MapList";
+import IconButton from "../components/Buttons/IconButton";
+
+import { FavouritesContext } from "../store/context/FavouritesContext";
 
 function MealItemDetails({ route, navigation }) {
   const mealId = route.params.mealItemId;
   const meal = MEALS.find((item) => item.id === mealId);
 
-  //Second way of adding component to header
-  // useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => <Text>Me</Text>,
-  //   });
-  // }, [navigation]);
+  const favourtieMealCtx = useContext(FavouritesContext);
+
+  const mealIsFavourite = favourtieMealCtx.ids.includes(mealId);
+
+  const changeFavouritesStatusHandler = () => {
+    console.log(mealIsFavourite, mealId, favourtieMealCtx);
+    if (mealIsFavourite) {
+      favourtieMealCtx.removeFavourite(mealId);
+    } else {
+      favourtieMealCtx.addFavourite(mealId);
+    }
+  };
+
+  // Second way of adding component to header
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          icon={mealIsFavourite ? "star" : "star-outline"}
+          color="white"
+          onPress={changeFavouritesStatusHandler}
+        />
+      ),
+    });
+  }, [navigation, changeFavouritesStatusHandler]);
 
   return (
     <View style={styles.rootContainer}>

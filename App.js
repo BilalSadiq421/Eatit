@@ -11,7 +11,7 @@ import { StyleSheet, StatusBar } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealItemDetails from "./screens/MealItemDetails";
-import IconButton from "./components/Buttons/IconButton";
+import FavouritesContextProvider from "./store/context/FavouritesContext";
 
 // React Navigation:
 // npm install @react-navigation/native
@@ -57,48 +57,56 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar barStyle="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          //set default styles for react navigation screen
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#ccc",
-            },
-            headerTintColor: "black",
-            contentStyle: { backgroundColor: "white" },
-          }}
-        >
-          <Stack.Screen
-            name="Drawer"
-            component={CategoriesScreen}
-            //set styles fo react navigation specific screen
-            // options={{ title: "All Categories" }}
-          />
-          <Stack.Screen
-            name="MealsOverviewScreen"
-            component={MealsOverviewScreen}
-            //set dynamic react navigation screen title for every  page
-            //set Title : 1st way
-            // options={({ route, navigation }) => {
-            //   const catTitle = route.params.CategoryName;
-            //   return {
-            //     title: catTitle,
-            //   };
-            // }}
-          />
-          <Stack.Screen
-            name="MealItemDetails"
-            component={MealItemDetails}
-            options={({ route, navigate }) => ({
-              itemId: route.params.mealItemId,
-              title: route.params.title,
-              //First way of adding component to header,
-              //like : Button
-              headerRight: () => <IconButton icon="star" color="white" />,
-            })}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavouritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            //set default styles for react navigation screen
+            screenOptions={{
+              headerStyle: {
+                backgroundColor: "#ccc",
+              },
+              headerTintColor: "black",
+              contentStyle: { backgroundColor: "white" },
+            }}
+          >
+            <Stack.Screen
+              name="Drawer"
+              component={CategoriesScreen}
+              //set styles fo react navigation specific screen
+              // options={{ title: "All Categories" }}
+            />
+            <Stack.Screen
+              name="MealsOverviewScreen"
+              component={MealsOverviewScreen}
+              //set dynamic react navigation screen title for every  page
+              //set Title : 1st way
+              // options={({ route, navigation }) => {
+              //   const catTitle = route.params.CategoryName;
+              //   return {
+              //     title: catTitle,
+              //   };
+              // }}
+            />
+            <Stack.Screen
+              name="MealItemDetails"
+              component={MealItemDetails}
+              options={({ route, navigate }) => ({
+                itemId: route.params.mealItemId,
+                title: route.params.title,
+                //First way of adding component to header,
+                //like : Button
+                // headerRight: () => (
+                //   <IconButton
+                //     icon="star"
+                //     color="white"
+                //     onPress={addToFavourites}
+                //   />
+                // ),
+              })}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavouritesContextProvider>
     </React.Fragment>
   );
 }

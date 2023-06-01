@@ -11,6 +11,10 @@ import { StyleSheet, StatusBar } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealItemDetails from "./screens/MealItemDetails";
+
+/************************ CONTEXT API WRAPPER ********************************
+ //Importing the Context API wrapper and wrapping the app.js, root component for acess throughout the app.
+*/
 import FavouritesContextProvider from "./store/context/FavouritesContext";
 
 // React Navigation:
@@ -57,6 +61,7 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar barStyle="light" />
+
       <FavouritesContextProvider>
         <NavigationContainer>
           <Stack.Navigator

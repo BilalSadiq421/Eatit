@@ -1,3 +1,6 @@
+// Context API Usage
+//1- App.js has been wrapped with context API provide
+// 2- Importing the Context API Hook
 import { useContext, useLayoutEffect } from "react";
 import { Image, View, Text, StyleSheet, ScrollView } from "react-native";
 import { MEALS } from "../data/dummy-data";
@@ -5,15 +8,17 @@ import { MEALS } from "../data/dummy-data";
 import MealStructure from "../components/MealStructure";
 import MapList from "../components/MapList";
 import IconButton from "../components/Buttons/IconButton";
-
+// 3- Importing the Context API initial state value
 import { FavouritesContext } from "../store/context/FavouritesContext";
 
 function MealItemDetails({ route, navigation }) {
   const mealId = route.params.mealItemId;
   const meal = MEALS.find((item) => item.id === mealId);
 
+  //4-initailizing the context hook with initial value,
   const favourtieMealCtx = useContext(FavouritesContext);
 
+  //5-using the context api, and updating the global state throughout the app
   const mealIsFavourite = favourtieMealCtx.ids.includes(mealId);
 
   const changeFavouritesStatusHandler = () => {

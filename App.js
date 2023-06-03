@@ -2,7 +2,7 @@
 import React from "react";
 //Image from Unsplash.com
 //SafeAreaView for sliding the content bellow smartphone Notches
-import { StyleSheet, StatusBar } from "react-native";
+import { Text, StyleSheet, StatusBar } from "react-native";
 
 //Expo-Commands:
 //Clean build cache:npm cache clean –force
@@ -11,6 +11,9 @@ import { StyleSheet, StatusBar } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealItemDetails from "./screens/MealItemDetails";
+import FavouritesScreen from "./screens/FavouritesScreen";
+
+import HeaderButton from "./components/Buttons/HeaderButton";
 
 /************************ CONTEXT API WRAPPER ********************************
  //Importing the Context API wrapper and wrapping the app.js, root component for acess throughout the app.
@@ -60,7 +63,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar barStyle="light" />
+      <StatusBar barStyle="dark" />
 
       <FavouritesContextProvider>
         <NavigationContainer>
@@ -75,10 +78,9 @@ export default function App() {
             }}
           >
             <Stack.Screen
-              name="Drawer"
+              name="Categories Screen"
               component={CategoriesScreen}
               //set styles fo react navigation specific screen
-              // options={{ title: "All Categories" }}
             />
             <Stack.Screen
               name="MealsOverviewScreen"
@@ -91,6 +93,10 @@ export default function App() {
               //     title: catTitle,
               //   };
               // }}
+            />
+            <Stack.Screen
+              name="FavouritesScreen"
+              component={FavouritesScreen}
             />
             <Stack.Screen
               name="MealItemDetails"

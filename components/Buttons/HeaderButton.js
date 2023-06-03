@@ -13,20 +13,21 @@ function HeaderButton({ children, onPress }) {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    backgroundColor: "purple",
+    backgroundColor: "white",
     borderRadius: 6,
     overflow: Platform.OS === "android" ? "hidden" : "visible",
-    shadowColor: "black",
+    shadowColor: "white",
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 8,
+    marginRight: 10,
   },
   text: {
     paddingVertical: 6,
     paddingHorizontal: 8,
     borderRadius: 6,
     fontWeight: "bold",
-    color: "white",
+    color: "#777",
   },
 });
 

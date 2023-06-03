@@ -1,3 +1,5 @@
+import "react-native-gesture-handler";
+
 //expo init <project-name:react-native-navigation-app>
 import React from "react";
 //Image from Unsplash.com
@@ -46,24 +48,33 @@ const Stack = createNativeStackNavigator();
 
 //Drawer:
 //npm install @react-navigation/drawer
-// import { createDrawerNavigator } from "@react-navigation/drawer";
-// const Drawer = createDrawerNavigator();
+import { createDrawerNavigator } from "@react-navigation/drawer";
+const Drawer = createDrawerNavigator();
 //for expo:npx expo install react-native-gesture-handler react-native-reanimated,
 //for native:npm install react-native-gesture-handler react-native-reanimated
 //navigators can be added with other navigators, like drawer with stack
 
-// function DrawerNavigator() {
-//   return (
-//     <Drawer.Navigator>
-//       <Drawer.Screen name="Categories" compponent={CategoriesScreen} />
-//     </Drawer.Navigator>
-//   );
-// }
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#351401",
+        },
+        headerTintColor: "white",
+        contentStyle: { backgroundColor: "#3f2f25" },
+      }}
+    >
+      <Drawer.Screen name="All Categories" component={CategoriesScreen} />
+      <Drawer.Screen name="Favourite Meals" component={FavouritesScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar barStyle="dark" />
+      <StatusBar barStyle="dark" backgroundColor="#351401" />
 
       <FavouritesContextProvider>
         <NavigationContainer>
@@ -71,15 +82,18 @@ export default function App() {
             //set default styles for react navigation screen
             screenOptions={{
               headerStyle: {
-                backgroundColor: "#ccc",
+                backgroundColor: "#351401",
               },
-              headerTintColor: "black",
-              contentStyle: { backgroundColor: "white" },
+              headerTintColor: "white",
+              contentStyle: { backgroundColor: "#3f2f25" },
             }}
           >
             <Stack.Screen
-              name="Categories Screen"
-              component={CategoriesScreen}
+              name="Drawer"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
               //set styles fo react navigation specific screen
             />
             <Stack.Screen

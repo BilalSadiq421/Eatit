@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 14,
     marginHorizontal: 6,
+    color: "white",
   },
 });
 

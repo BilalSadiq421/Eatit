@@ -11,22 +11,32 @@ import IconButton from "../components/Buttons/IconButton";
 // 3- Importing the Context API initial state value
 import { FavouritesContext } from "../store/context/FavouritesContext";
 
+//Redux-Imports
+import { useDispatch, useSelector } from "react-redux";
+import { addFavourite, removeFavourite } from "../store/redux/favourites-slice";
+
 function MealItemDetails({ route, navigation }) {
   const mealId = route.params.mealItemId;
   const meal = MEALS.find((item) => item.id === mealId);
 
   //4-initailizing the context hook with initial value,
-  const favourtieMealCtx = useContext(FavouritesContext);
+  // const favourtieMealCtx = useContext(FavouritesContext);
+  /////////Redux:Read values
+  const fabouriteMealsIds = useSelector((state) => state.favouriteMeals.ids);
+  ////////Redux : Update Values
+  const dispatch = useDispatch();
 
   //5-using the context api, and updating the global state throughout the app
-  const mealIsFavourite = favourtieMealCtx.ids.includes(mealId);
+  // const mealIsFavourite = favourtieMealCtx.ids.includes(mealId);
+  const mealIsFavourite = fabouriteMealsIds.includes(mealId);
 
   const changeFavouritesStatusHandler = () => {
-    console.log(mealIsFavourite, mealId, favourtieMealCtx);
     if (mealIsFavourite) {
-      favourtieMealCtx.removeFavourite(mealId);
+      // favourtieMealCtx.removeFavourite(mealId);
+      dispatch(removeFavourite({ id: mealId }));
     } else {
-      favourtieMealCtx.addFavourite(mealId);
+      // favourtieMealCtx.addFavourite(mealId);
+      dispatch(addFavourite({ id: mealId }));
     }
   };
 

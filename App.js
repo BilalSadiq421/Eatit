@@ -16,6 +16,9 @@ import MealItemDetails from "./screens/MealItemDetails";
 import FavouritesScreen from "./screens/FavouritesScreen";
 
 import HeaderButton from "./components/Buttons/HeaderButton";
+// ************************ Redux WRAPPER ********************************
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 /************************ CONTEXT API WRAPPER ********************************
  //Importing the Context API wrapper and wrapping the app.js, root component for acess throughout the app.
@@ -76,7 +79,8 @@ export default function App() {
     <React.Fragment>
       <StatusBar barStyle="dark" backgroundColor="#351401" />
 
-      <FavouritesContextProvider>
+      {/* <FavouritesContextProvider> */}
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             //set default styles for react navigation screen
@@ -131,7 +135,8 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavouritesContextProvider>
+      </Provider>
+      {/* </FavouritesContextProvider> */}
     </React.Fragment>
   );
 }

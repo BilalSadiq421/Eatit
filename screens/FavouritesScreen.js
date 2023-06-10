@@ -5,9 +5,12 @@ import { Text, View, StyleSheet, ScrollView } from "react-native";
 
 import { MEALS } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
+import { useSelector } from "react-redux";
 
 function FavouritesScreen({ route, navigation }) {
-  const contextValue = useContext(FavouritesContext);
+  // const contextValue = useContext(FavouritesContext);
+  ////Redux: Read Values
+  const contextValue = useSelector((state) => state.favouriteMeals);
 
   return (
     <ScrollView>
